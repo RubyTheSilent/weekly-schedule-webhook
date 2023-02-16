@@ -16,6 +16,7 @@ id_wh    = config.get("id")
 token_wh = config.get("token")
 phrase   = config.get("phrase")
 description = config.get("description")
+youtube_url_community = config.get("youtube_url")
 def parse_yt_post_url(url)->str:
     regex_str = '("postId":)"(.*?)","authorText":{"runs":\[{"text":".*?","navigationEndpoint":{"clickTrackingParams":".*?","commandMetadata":{"webCommandMetadata":{"url":"/.*?","webPageType":".*?","rootVe":[0-9]+,"apiUrl":"/youtubei/v[0-9]+/browse"}},"browseEndpoint":{"browseId":".*?","canonicalBaseUrl":".*?"}}}\],"accessibility":{"accessibilityData":{"label":".*?"}}},"authorThumbnail":{"thumbnails":\[{"url":"//yt3.googleusercontent.com/.*?-c-k-c0x00ffffff-no-rj-mo","width":[0-9]+,"height":[0-9]+},{"url":"//yt3.googleusercontent.com/.*?-c-k-c0x00ffffff-no-rj-mo","width":[0-9]+,"height":[0-9]+},{"url":"//yt3.googleusercontent.com/.*?-c-k-c0x00ffffff-no-rj-mo","width":[0-9]+,"height":[0-9]+}],"accessibility":{"accessibilityData":{"label":".*?"}}},"authorEndpoint":{"clickTrackingParams":".*?","commandMetadata":{"webCommandMetadata":{"url":".*?","webPageType":".*?","rootVe":[0-9]+,"apiUrl":"/youtubei/v[0-9]+/browse"}},"browseEndpoint":{"browseId":".*?","canonicalBaseUrl":".*?"}},"contentText":{"runs":\[{"text":(".*?")}'
     try:
@@ -59,7 +60,7 @@ def update_loop():
         try:
             if datetime.datetime.utcnow() > last_update :
                 last_update = datetime.datetime.utcnow() + datetime.timedelta(seconds=int((5*60)))
-                new_post_url = parse_yt_post_url("https://www.youtube.com/@AishaChannel/community")
+                new_post_url = parse_yt_post_url(youtube_url_community)
                 if new_post_url != "Not Found" and post_url != new_post_url:
                     post_url = new_post_url
                     url_img = parse_yt_post_attachment(new_post_url)
