@@ -77,7 +77,7 @@ def update_loop():
                                     "url" : post_url,
                                     "title" : phrase,
                                     "type" : "rich",
-                                    "description" : "แล้วเจอนะคะ!!! (ᗒᗨᗕ) ✨",
+                                    "description" : description,
                                     "footer" : {
                                         "text":"*ตารางอาจมีการเปลี่ยนแปลง ขออภัยในความไม่สะดวกค่ะ*"
                                     },
